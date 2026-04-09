@@ -1,9 +1,7 @@
 name: Auto Mining Off
 
 on:
-  workflow_dispatch:        # Manual trigger via GitHub UI
-  schedule:
-    - cron: '0 */3 * * *'   # Yeh command isko har 3 ghante baad run karegi
+  workflow_dispatch:        # API (cron-job.org) ya Manual trigger ke liye
 
 jobs:
   auto-off:
