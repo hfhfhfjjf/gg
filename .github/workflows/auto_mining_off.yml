@@ -3,6 +3,10 @@ name: Auto Mining Off
 on:
   workflow_dispatch:        # API (cron-job.org) ya Manual trigger ke liye
 
+# Warning ko fix karne ke liye yeh environment variable add kiya gaya hai
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   auto-off:
     runs-on: ubuntu-latest
@@ -14,7 +18,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Cache node_modules
-        uses: actions/cache@v3
+        uses: actions/cache@v4   # Isko v3 se v4 kar diya gaya hai
         with:
           path: node_modules
           key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
@@ -32,4 +36,3 @@ jobs:
         run: node auto_mining_off.js
         env:
           FIREBASE_CREDENTIALS: ${{ secrets.FIREBASE_CREDENTIALS }}
-          
